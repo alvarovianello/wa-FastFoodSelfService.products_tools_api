@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wa-productstoolsapi-configmap
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ConnectionStrings__DefaultConnection: "Server=fastfood-db.czbnxjpgfykv.us-east-1.rds.amazonaws.com;Port=5432;Database=FastFoodDB;User Id=postgres;Password=FastFoodDB#321;"

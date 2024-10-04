@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wa-productstoolsapi-deployment
+spec:
+  template:
+    metadata:
+      name: wa-productstoolsapi
+      labels:
+        app: wa-productstoolsapi
+    spec:
+      containers:
+        - name: wa-productstoolsapi-container
+          image: 659767469388.dkr.ecr.us-east-1.amazonaws.com/wa-fastfood/wa-fastfoodselfservice.products_tools_api:latest
+          ports:
+            - containerPort: 5001
+          envFrom:
+            - configMapRef:
+                name: wa-productstoolsapi-configmap
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5001
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5001
+            periodSeconds: 10
+            failureThreshold: 5
+            initialDelaySeconds: 3
+          resources:
+            requests:
+              cpu: 10m
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wa-productstoolsapi

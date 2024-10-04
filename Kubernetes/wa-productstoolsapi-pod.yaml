@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wa-productstoolsapi
+  labels:
+    app: wa-productstoolsapi
+spec:
+  containers:
+    - name: wa-productstoolsapi-container
+      image: 659767469388.dkr.ecr.us-east-1.amazonaws.com/wa-fastfood/wa-fastfoodselfservice.products_tools_api:latest
+      ports:
+        - containerPort: 5001
+      envFrom:
+        - configMapRef:
+            name: wa-productstoolsapi-configmap
