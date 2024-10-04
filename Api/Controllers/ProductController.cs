@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("api/products")]
+    [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly GetAllProducts _getAllProducts;
