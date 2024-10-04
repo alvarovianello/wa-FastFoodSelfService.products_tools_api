@@ -30,7 +30,7 @@ spec:
               port: 5001
             periodSeconds: 10
             failureThreshold: 5
-            initialDelaySeconds: 3
+            initialDelaySeconds: 20
           resources:
             requests:
               cpu: 10m
