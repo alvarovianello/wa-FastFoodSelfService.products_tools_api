@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: wa-productstoolsapi-configmap
 data:
-  ASPNETCORE_ENVIRONMENT: "Development"
-  ConnectionStrings__DefaultConnection: "Server=postgres;Port=5432;Database=Lanchonete;User Id=postgres;Password=admin;"
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ConnectionStrings__DefaultConnection: "Server=fastfood-db.czbnxjpgfykv.us-east-1.rds.amazonaws.com;Port=5432;Database=FastFoodDB;User Id=postgres;Password=FastFoodDB#321;"
