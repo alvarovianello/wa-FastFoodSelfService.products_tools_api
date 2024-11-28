@@ -13,12 +13,8 @@ namespace Application.UseCases.Products
             _productRepository = productRepository;
         }
 
-        public async Task ExecuteAsync(ProductDto? productDto)
+        public async Task ExecuteAsync(ProductDto productDto)
         {
-            if (productDto == null)
-            {
-                throw new ArgumentNullException(nameof(productDto), "Produto não pode ser nulo");
-            }
             var product = new Product
             {
                 Name = productDto.Name,

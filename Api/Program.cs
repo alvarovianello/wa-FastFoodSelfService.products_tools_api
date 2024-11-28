@@ -29,5 +29,3 @@ app.MapControllers();
 app.MapHealthChecks("/api/v1/health");
 
 app.Run();
-
-public partial class Program { }
