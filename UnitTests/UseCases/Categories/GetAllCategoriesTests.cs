@@ -3,7 +3,7 @@ using Application.UseCases.Categories;
 using Domain.Entities;
 using Moq;
 
-namespace UnitTests.Application.UseCases
+namespace UnitTests.UseCases.Categories
 {
     public class GetAllCategoriesTests
     {

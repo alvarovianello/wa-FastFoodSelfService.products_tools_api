@@ -4,7 +4,7 @@ using Application.UseCases.Categories;
 using Domain.Entities;
 using Moq;
 
-namespace UnitTests.Application.UseCases
+namespace UnitTests.UseCases.Categories
 {
     public class RegisterCategoryTests
     {
@@ -45,7 +45,31 @@ namespace UnitTests.Application.UseCases
             };
 
             // Act & Assert
-            await Assert.ThrowsAsync<ArgumentException>(() => _registerCategoryUseCase.ExecuteAsync(categoryDto));
+            await Assert.ThrowsAsync<InvalidOperationException>(() => _registerCategoryUseCase.ExecuteAsync(categoryDto));
+        }
+
+        [Fact]
+        public async Task Should_Throw_Exception_When_Name_Already_Exists()
+        {
+            // Arrange
+            var categoryDto = new CategoryDto
+            {
+                Name = "Hamburgers",
+                Description = "Delicious hamburgers"
+            };
+
+            _categoryRepositoryMock
+                .Setup(repo => repo.ExistsByNameAsync(categoryDto.Name,null))
+                .ReturnsAsync(true); // Simula que o nome já existe
+
+            // Act & Assert
+            var exception = await Assert.ThrowsAsync<InvalidOperationException>(
+                () => _registerCategoryUseCase.ExecuteAsync(categoryDto));
+
+            Assert.Equal("O nome de categoria informado já possui cadastro.", exception.Message);
+
+            // Verifica que AddAsync nunca é chamado quando o nome já existe
+            _categoryRepositoryMock.Verify(x => x.AddAsync(It.IsAny<Category>()), Times.Never);
         }
     }
 }

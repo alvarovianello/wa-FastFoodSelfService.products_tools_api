@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Hosting;
 
 namespace IntegrationTests
 {
-    public class CustomWebApplicationFactory : WebApplicationFactory<Program>
+    public class CustomWebApplicationFactory<T> : WebApplicationFactory<T> where T : class
     {
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
+        protected override IHost CreateHost(IHostBuilder builder)
         {
-            builder.UseEnvironment("Testing");
-
-            // Aqui você pode adicionar qualquer configuração ou serviço necessário para testes
+            return base.CreateHost(builder);
         }
     }
 }
