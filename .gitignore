@@ -13,7 +13,10 @@
 /Domain/obj
 /Infrastructure/bin/Debug/net8.0
 /Infrastructure/obj
-/UnitTest/bin/Debug/net8.0
-/UnitTest/obj
 /IntegrationTests/bin/Debug/net8.0
 /IntegrationTests/obj
+/UnitTests/CoverageReport
+/UnitTests/TestResults
+/UnitTests/bin/Debug/net8.0
+/UnitTests/obj
+/.vs/ProjectEvaluation
