@@ -15,10 +15,16 @@ namespace Application.UseCases.Categories
 
         public async Task ExecuteAsync(CategoryDto categoryDto)
         {
+
+            if (string.IsNullOrWhiteSpace(categoryDto.Name))
+            {
+                throw new InvalidOperationException("O nome da categoria não pode ser vazio.");
+            }
+
             // Verifica se o nome já existe
             if (await _categoryRepository.ExistsByNameAsync(categoryDto.Name))
             {
-                throw new Exception("O nome de categoria informado já possui cadastro.");
+                throw new InvalidOperationException("O nome de categoria informado já possui cadastro.");
             }
 
             var category = new Category

@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.UseCases.Categories;
 using Application.UseCases.Products;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,8 +60,16 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] ProductDto productDto)
         {
-            await _createProduct.ExecuteAsync(productDto);
-            return CreatedAtAction(nameof(GetProductById), new { id = productDto.Id }, productDto);
+           
+            try
+            {
+                await _createProduct.ExecuteAsync(productDto);
+                return CreatedAtAction(nameof(GetProductById), new { id = productDto.Id }, productDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
