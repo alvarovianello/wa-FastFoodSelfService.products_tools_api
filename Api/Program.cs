@@ -14,6 +14,9 @@ builder.AddResolveDependencies();
 
 var app = builder.Build();
 
+// Inicializar o banco de dados
+app.Services.InitializeDatabase();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

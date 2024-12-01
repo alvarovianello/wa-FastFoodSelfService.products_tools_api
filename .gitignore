@@ -20,3 +20,6 @@
 /UnitTests/bin/Debug/net8.0
 /UnitTests/obj
 /.vs/ProjectEvaluation
+/UnitTests/obj/Debug/net8.0/UnitTests.csproj.AssemblyReference.cache
+/UnitTests/obj/Debug/net8.0/UnitTests.AssemblyInfo.cs
+/UnitTests/obj/Debug/net8.0/UnitTests.AssemblyInfoInputs.cache

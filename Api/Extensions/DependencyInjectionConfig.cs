@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
 using Application.UseCases.Categories;
 using Application.UseCases.Products;
+using Infrastructure.Configurations.Database;
+using Infrastructure.Data.Initializer;
 using Infrastructure.Repositories;
 
 namespace Api.Extensions
@@ -9,7 +11,15 @@ namespace Api.Extensions
     {
         public static IServiceCollection AddResolveDependencies(this WebApplicationBuilder builder)
         {
-            IServiceCollection services = builder.Services;
+            return AddResolveDependencies(builder.Services, builder.Configuration);
+        }
+
+        public static IServiceCollection AddResolveDependencies(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSingleton<IDbConnectionFactory, PostgreSqlConnectionFactory>();
+
+            // Inicializador do banco de dados
+            services.AddSingleton<DatabaseInitializer>();
 
             //Category
             services.AddScoped<ICategoryRepository, CategoryRepository>();
